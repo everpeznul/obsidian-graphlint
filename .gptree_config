@@ -1,0 +1,27 @@
+# GPTree Local Config
+version: 2
+
+# Whether to use .gitignore
+useGitIgnore: true
+# File types to include (e.g., .py,.js)
+includeFileTypes: *
+# File types to exclude when includeFileTypes is '*'
+excludeFileTypes: 
+# Output file name
+outputFile: gptree_output.txt
+# Whether to output the file locally or relative to the project directory
+outputFileLocally: true
+# Whether to copy the output to the clipboard
+copyToClipboard: false
+# Whether to use safe mode (prevent overly large files from being combined)
+safeMode: true
+# Whether to store the files chosen in the config file (--save, -s)
+storeFilesChosen: true
+# Whether to include line numbers in the output (--line-numbers, -n)
+lineNumbers: false
+# Whether to show ignored files in the directory tree
+showIgnoredInTree: false
+# Whether to show only default ignored files in the directory tree while still respecting gitignore
+showDefaultIgnoredInTree: false
+# Previously selected files (when using the -s or --save flag previously)
+previousFiles: source/scripts/update.js,source/class/note/note-periodic-dream.js,main.js,source/vault-Constants.js,source/class/note/index-note.js,source/core/store-plugin.js,comands/comand-NewPeriodicNote.js,.gitattributes,source/class/note/note-subClasses.js,source/class/note/note-periodic-daily.js,source/class/note/note-periodic.js,source/scripts/setNote.js,source/class/note/note-human.js,README.md,source/class/note/note-periodic-monthly.js,merge.sh,source/class/note/links.js,comands/comand-UpdateAllLinks.js,comands/comand-UpdateNoteLinks.js,source/class/note/note.js,.gptree_config,source/class/note/note-periodic-thought.js,source/class/tool/modal-confirmation.js,gptree_output.txt,source/class/note/note-periodic-yearly.js,source/class/note/noteTags.js,source/class/note/note-periodic-weekly.js,source/class/note/note-periodic-quarterly.js

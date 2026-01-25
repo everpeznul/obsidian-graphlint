@@ -17,7 +17,7 @@ class Monthly extends Periodic {
         } else if (ok && date === '0000-00') {
             founder = await this.find(
                 celestia,
-                '<4>❤️‍🔥.календарь.tasks.периодическая.monthly',
+                '❤️‍🔥.календарь.периодические.периодическая.monthly',
             );
         }
 

@@ -80,7 +80,11 @@ class Note {
     async find(graph, reqTitle, create = true) {
         let reqFile;
 
-        reqFile = graph.files.find((file) => file.basename.endsWith(reqTitle));
+	if (graph.path.includes('void') && reqTitle.split('.').length === 1) {
+ 	   reqFile = graph.files.find(file => file.basename === reqTitle);
+	} else {
+	    reqFile = graph.files.find(file => file.basename.endsWith(reqTitle));
+	}
 
         if (!reqFile) {
             if (create) {
@@ -129,6 +133,7 @@ class Note {
     }
 
     async findFounder(graph, celestia) {
+
         let founderTitle = this.words[0].text;
         console.log(`    Note founder:\n        "${founderTitle}"`);
 

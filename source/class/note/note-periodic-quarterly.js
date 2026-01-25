@@ -17,7 +17,7 @@ class Quarterly extends Periodic {
         } else if (ok && date === '0000-Q0') {
             founder = await this.find(
                 celestia,
-                '<4>❤️‍🔥.календарь.tasks.периодическая.quarterly',
+                '❤️‍🔥.календарь.периодические.периодическая.quarterly',
             );
         }
 
