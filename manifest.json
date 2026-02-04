@@ -1,0 +1,10 @@
+{
+  "id": "periodic-notes-linker",
+  "name": "Periodic Notes Linker",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "Автоматическое управление связями периодических заметок",
+  "author": "Your Name",
+  "authorUrl": "https://github.com/yourusername",
+  "isDesktopOnly": false
+}

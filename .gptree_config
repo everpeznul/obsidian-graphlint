@@ -1,12 +1,16 @@
 # GPTree Local Config
-version: 2
+version: 3
 
 # Whether to use .gitignore
 useGitIgnore: true
-# File types to include (e.g., .py,.js)
+# File types to include (e.g., .py,.js) - use * for all types
 includeFileTypes: *
-# File types to exclude when includeFileTypes is '*'
+# File types to exclude (e.g., .log,.tmp)
 excludeFileTypes: 
+# Advanced: Glob patterns to include (e.g., src/**/*.py,**/*.js) - overrides includeFileTypes if specified
+includePatterns: 
+# Advanced: Glob patterns to exclude (e.g., **/tests/**,**/*.log) - combined with excludeFileTypes
+excludePatterns: 
 # Output file name
 outputFile: gptree_output.txt
 # Whether to output the file locally or relative to the project directory
@@ -24,4 +28,4 @@ showIgnoredInTree: false
 # Whether to show only default ignored files in the directory tree while still respecting gitignore
 showDefaultIgnoredInTree: false
 # Previously selected files (when using the -s or --save flag previously)
-previousFiles: source/scripts/update.js,source/class/note/note-periodic-dream.js,main.js,source/vault-Constants.js,source/class/note/index-note.js,source/core/store-plugin.js,comands/comand-NewPeriodicNote.js,.gitattributes,source/class/note/note-subClasses.js,source/class/note/note-periodic-daily.js,source/class/note/note-periodic.js,source/scripts/setNote.js,source/class/note/note-human.js,README.md,source/class/note/note-periodic-monthly.js,merge.sh,source/class/note/links.js,comands/comand-UpdateAllLinks.js,comands/comand-UpdateNoteLinks.js,source/class/note/note.js,.gptree_config,source/class/note/note-periodic-thought.js,source/class/tool/modal-confirmation.js,gptree_output.txt,source/class/note/note-periodic-yearly.js,source/class/note/noteTags.js,source/class/note/note-periodic-weekly.js,source/class/note/note-periodic-quarterly.js
+previousFiles: src/repository/find.js,src/utils/services/linker.js,src/ui/modal.js,src/commands/all_note_update.js,src/utils/services/validaytor.js,src/models/note/periodic/dates/monthly.js,src/utils/services/typer.js,src/models/note/note.js,plugin.js,src/models/note/periodic/dates/yearly.js,src/commands/note_update.js,src/models/note/periodic/dates/daily.js,src/models/note/periodic/periodic.js,src/config/config.yaml,src/utils/services/updater.js,src/commands/new_event.js,src/models/note/periodic/dates/quarterly.js,main.js,src/models/note/periodic/dates/weekly.js,src/models/note/periodic/event/dream.js,src/utils/services/tager.js,src/models/note/periodic/event/thought.js

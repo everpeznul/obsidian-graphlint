@@ -1,64 +1,82 @@
-module.exports = {};
-module.exports.onload = async (plugin) => {
-    const path = require('path');
+const { Plugin, Notice } = require('obsidian');
+const { updateNoteLinks } = require('./src/commands/note_update');
+const { updateAllLinks } = require('./src/commands/all_note_update');
+const { createNewEvent } = require('./src/commands/new_event');
+const { ConfirmationModal } = require('./src/ui/modal');
+const { PeriodicNotesSettingTab, DEFAULT_SETTINGS } = require('./src/settings/settings');
 
-    const vaultBasePath = plugin.app.vault.adapter.basePath;
+module.exports = class PeriodicNotesPlugin extends Plugin {
+    async onload() {
+        console.log('Загрузка Periodic Notes Linker');
 
-    const { setPlugin } = require(path.join(vaultBasePath, 'obsidian-scripts/source/core/store-plugin'));
+        // Загрузка настроек
+        await this.loadSettings();
 
-    setPlugin(plugin);
+        // Добавление вкладки настроек
+        this.addSettingTab(new PeriodicNotesSettingTab(this.app, this));
 
-    const { ConfirmationModal } = require(path.join(vaultBasePath, 'obsidian-scripts/source/class/tool/modal-confirmation'))
+        // Команды...
+        this.addCommand({
+            id: 'update-links-of-note',
+            name: 'Обновить ссылки заметки',
+            callback: async () => {
+                new Notice('Начато обновление ссылок заметки');
+                try {
+                    await updateNoteLinks(this);
+                    new Notice('Обновление ссылок заметки закончено');
+                } catch (error) {
+                    new Notice('Ошибка при обновлении ссылок');
+                    console.error(error);
+                }
+            },
+        });
 
-    plugin.addCommand({
-        id: 'update links of note',
-        name: 'Update Links of Note',
-        callback: async () => {
-            const { updateNoteLinks } = require(path.join(
-                vaultBasePath,
-                'obsidian-scripts/comands/comand-UpdateNoteLinks',
-            ));
-            new Notice('Начато обновление ссылок заметки');
+        this.addCommand({
+            id: 'update-links-of-vault',
+            name: 'Обновить ссылки хранилища',
+            callback: async () => {
+                new ConfirmationModal(
+                    this.app,
+                    'Это действие обновит ссылки во всех файлах. Вы уверены?',
+                    async () => {
+                        new Notice('Начато обновление ссылок хранилища');
+                        try {
+                            await updateAllLinks(this);
+                            new Notice('Обновление ссылок хранилища закончено');
+                        } catch (error) {
+                            new Notice('Ошибка при обновлении хранилища');
+                            console.error(error);
+                        }
+                    }
+                ).open();
+            },
+        });
 
-            await updateNoteLinks();
+        this.addCommand({
+            id: 'create-new-periodic',
+            name: 'Создать новое периодическое событие',
+            callback: async () => {
+                new Notice('Создание начато');
+                try {
+                    await createNewEvent(this);
+                    new Notice('Создание закончено');
+                } catch (error) {
+                    new Notice('Ошибка при создании');
+                    console.error(error);
+                }
+            },
+        });
+    }
 
-            new Notice('Обновление ссылок заметки закончено');
-        },
-    });
+    async loadSettings() {
+        this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+    }
 
-    plugin.addCommand({
-        id: 'update links of vault',
-        name: 'Update Links of Vault',
-        callback: async () => {
-            new ConfirmationModal(plugin.app, 'Это действие обновит ссылки во всех файлах. Вы уверены?', async () => {
-                const { updateAllLinks } = require(path.join(
-                    vaultBasePath,
-                    'obsidian-scripts/comands/comand-UpdateAllLinks',
-                ));
+    async saveSettings() {
+        await this.saveData(this.settings);
+    }
 
-                new Notice('Начато обновление ссылок хранилища');
-
-                await updateAllLinks();
-
-                new Notice('Обновление ссылок хранилища закончено');
-            }).open();
-        },
-    });
-
-    plugin.addCommand({
-        id: 'create new periodic',
-        name: 'Create New Periodic',
-        callback: async () => {
-            const { newPeriodicNote } = require(path.join(
-                vaultBasePath,
-                'obsidian-scripts/comands/comand-NewPeriodicNote',
-            ));
-
-            new Notice('Создание начато');
-
-            await newPeriodicNote();
-
-            new Notice('Создание закончено');
-        },
-    });
+    onunload() {
+        console.log('Выгрузка Periodic Notes Linker');
+    }
 };
