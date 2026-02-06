@@ -1,10 +1,10 @@
 {
-  "id": "periodic-notes-linker",
-  "name": "Periodic Notes Linker",
-  "version": "1.0.0",
+  "id": "obsidian-graphlint",
+  "name": "Graph Lint",
+  "version": "0.2.1",
   "minAppVersion": "0.15.0",
-  "description": "Автоматическое управление связями периодических заметок",
-  "author": "Your Name",
-  "authorUrl": "https://github.com/yourusername",
-  "isDesktopOnly": false
+  "description": "Управление ссылками между заметками",
+  "author": "everpeznul",
+  "authorUrl": "https://github.com/everpeznul/obsidian-graphlint",
+  "isDesktopOnly": true
 }
